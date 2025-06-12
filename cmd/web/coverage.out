@@ -1,0 +1,10 @@
+mode: set
+github.com/jaysg1thub/bookings/cmd/web/main.go:23.13,25.16 2 0
+github.com/jaysg1thub/bookings/cmd/web/main.go:25.16,27.3 1 0
+github.com/jaysg1thub/bookings/cmd/web/main.go:30.2,40.16 4 0
+github.com/jaysg1thub/bookings/cmd/web/main.go:43.18,59.16 10 1
+github.com/jaysg1thub/bookings/cmd/web/main.go:59.16,62.3 2 0
+github.com/jaysg1thub/bookings/cmd/web/main.go:64.2,74.12 6 1
+github.com/jaysg1thub/bookings/cmd/web/middleware.go:10.45,19.2 3 1
+github.com/jaysg1thub/bookings/cmd/web/middleware.go:22.50,24.2 1 1
+github.com/jaysg1thub/bookings/cmd/web/routes.go:12.49,47.2 18 1
