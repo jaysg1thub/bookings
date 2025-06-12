@@ -8,8 +8,9 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/jaysg1thub/bookings/pkg/config"
-	"github.com/jaysg1thub/bookings/pkg/models"
+	"github.com/jaysg1thub/bookings/internal/config"
+	"github.com/jaysg1thub/bookings/internal/models"
+	"github.com/justinas/nosurf"
 )
 
 var functions = template.FuncMap{}
@@ -21,7 +22,8 @@ func NewTemplates(a *config.AppConfig) {
 	app = a
 }
 
-func AddDefaultData(td *models.TemplateData) *models.TemplateData {
+func AddDefaultData(td *models.TemplateData, r *http.Request) *models.TemplateData {
+	td.CSRFToken = nosurf.Token(r)
 	return td
 
 }
@@ -29,7 +31,7 @@ func AddDefaultData(td *models.TemplateData) *models.TemplateData {
 // takes in a "RW" & "template" we want to parse & writes to Brwoser window:
 // RenderTemplate renders templages using html/template;
 // Note:	we change func name to UPPERCASE "R" so func is now visible from outside pkg
-func RenderTemplate(w http.ResponseWriter, html string, td *models.TemplateData) {
+func RenderTemplate(w http.ResponseWriter, r *http.Request, html string, td *models.TemplateData) {
 
 	var tc map[string]*template.Template
 
@@ -59,7 +61,7 @@ func RenderTemplate(w http.ResponseWriter, html string, td *models.TemplateData)
 
 	buf := new(bytes.Buffer)
 
-	td = AddDefaultData(td)
+	td = AddDefaultData(td, r)
 
 	_ = t.Execute(buf, td)
 
